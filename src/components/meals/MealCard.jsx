@@ -1,24 +1,12 @@
-import React, {useState} from 'react'
+import React, {useContext} from 'react'
 import DisplayRecipe from './DisplayRecipe';
-import {Link} from 'react-router-dom'
+import MealContext from '../../context/MealContext';
 
 
 
 
 function MealCard({recipe}) {
-  const [button, setButton] = useState(false)
-  const [edit, setEdit] = useState(false)
-
-  const handleDelete = async () => {
-    await fetch(`/recipe/${recipe.id}` ,{
-      method: 'DELETE'
-    })
-    setButton(true)
-  }
-
-  const handleEdit = () => {
-    setEdit(!edit)
-  }
+  const {button, edit, handleDelete, handleEdit, setButton} = useContext(MealContext)
 
   if(button){
     if(edit){
@@ -34,7 +22,7 @@ function MealCard({recipe}) {
         <div className='flex items-center justify-center'>
           <button  onClick={()=>{setButton(false)}} className="m-5 btn btn-primary w-28">Shrink</button>
           <button onClick={handleEdit} className="btn btn-secondary m-5 w-28">Edit</button>
-          <button onClick={handleDelete} className="btn btn-accent m-5 w-28">Delete</button>
+          <button onClick={()=>{handleDelete(recipe.id)}} className="btn btn-accent m-5 w-28">Delete</button>
         </div>
       </div>
       )

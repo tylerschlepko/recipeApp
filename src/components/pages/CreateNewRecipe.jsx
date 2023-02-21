@@ -1,63 +1,12 @@
 
-import React, {useState} from 'react'
+import React, {useContext} from 'react'
+import MealContext from '../../context/MealContext'
 import {Link} from 'react-router-dom'
 
 
 
 function CreateNewRecipe() {
-    const [image, setImage] = useState(null)
-    const [description, setDescription] = useState('')
-    const [title, setTitle] = useState('')
-    const [ingredients, setIngredients] = useState('')
-    const [instructions, setInstructions] = useState('')
-
-    const handleFileChange = (event) => {
-        setImage(event.target.files[0]);
-      };
-
-    const handleTitle = (e) => {
-      setTitle(e.target.value)
-    }
-
-    const handleIngredients = (e) => {
-      setIngredients(e.target.value)
-    }
-
-    const handleInstructions = (e) => {
-      setInstructions(e.target.value)
-    }
-
-    const handleDescription = (e) => {
-      setDescription(e.target.value)
-    }
-
-    const handleSubmit = async (e) => {
-      e.preventDefault()
-      const formData = new FormData()
-      formData.append('image', image)
-      formData.append('title', title)
-      formData.append('instructions', instructions)
-      formData.append('description', description)
-      formData.append('ingredients', ingredients)
-      console.log(image)
-      await uploadData(formData)
-      
-    }
-
-    const uploadData = async (formData) =>{
-      try {
-        const response = await fetch('/upload', {
-          method: 'POST',
-          body: formData
-        })
-        const data = await response.json()
-        console.log(data);
-        
-      } catch (error) {
-        console.error(error)
-      }
-      
-    }
+    const {handleDescription, handleFileChange, handleIngredients, handleInstructions, handleTitle, handleSubmit, title, description, ingredients, instructions} = useContext(MealContext)
 
   return (
     <div className="flex justify-evenly">
@@ -68,7 +17,7 @@ function CreateNewRecipe() {
             <textarea className="textarea textarea-bordered textarea-primary" placeholder="Description" value={description} onChange={handleDescription} required></textarea>
             <textarea className="textarea textarea-bordered textarea-primary" placeholder="Ingredients" value={ingredients} onChange={handleIngredients} required></textarea>
             <textarea className="textarea textarea-bordered textarea-primary" placeholder="Instructions" value={instructions} onChange={handleInstructions} required></textarea>
-            <input type='submit' className='btn btn-primary' ></input>
+            <input type='submit' className='btn btn-primary'  ></input>
         </form>
     </div>
   )
