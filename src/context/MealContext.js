@@ -6,7 +6,7 @@ const MealContext = createContext()
 export const MealProvider = ({children}) =>{
     
     const [recipes, setRecipes] = useState([])
-    const [button, setButton] = useState(false)
+    const [showSingle, setShowSingle] = useState(false)
     const [edit, setEdit] = useState(false)
     const [single, setSingle] = useState({})
     
@@ -29,10 +29,9 @@ export const MealProvider = ({children}) =>{
           }) 
           let data = await response.json()
           const obj = await data[0]
-          console.log(data);
-          await setSingle({...obj}) 
-          console.log(single)
-          setButton(true)
+          await setSingle({...obj})
+          setEdit(false) 
+          setShowSingle(true)
         } catch (error) {
           console.error(error)
         }
@@ -45,10 +44,17 @@ export const MealProvider = ({children}) =>{
     },[])
 
     const handleDelete = async (id) => {
+        const updatedRecipes = recipes.filter((recipe)=> recipe.id !== id)
+        await setRecipes(updatedRecipes)
+        await setShowSingle(false)
         await fetch(`/recipe/${id}` ,{
         method: 'DELETE'
         })
-        setButton(true)
+
+    }
+
+    const setHome = () => {
+      setShowSingle(false)
     }
 
     const handleEdit = () => {
@@ -60,12 +66,13 @@ export const MealProvider = ({children}) =>{
             recipes,
             handleEdit,
             handleDelete,
-            button,
-            setButton,
+            showSingle,
+            setShowSingle,
             edit,
             setSingle,
             single,
-            getOne
+            getOne,
+            setHome
 
         }}>
             {children}
