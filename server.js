@@ -50,6 +50,16 @@ app.post('/upload', upload.single('image'), async (req, res) =>{
     `
 })
 
+app.get('/recipe/:id', async (req, res) =>{
+  const id = req.params.id
+
+  const data = await sql`
+  SELECT * FROM recipes 
+  WHERE id = ${id}
+  `
+  res.json(data)
+})
+
 app.delete('/recipe/:id', async (req, res) => {
   const id = req.params.id
 
