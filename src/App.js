@@ -8,9 +8,11 @@ import { MealProvider } from './context/MealContext'
 import LoginPage from './components/pages/LoginPage'
 import CreateNewUser from './components/pages/CreateNewUser'
 import StrippedHeader from './components/layout/StrippedHeader'
+import {AlertProvider} from './context/AlertContext'
 
 function App() {
   return (
+    <AlertProvider>
     <MealProvider>
       <Router>
           <Routes>
@@ -37,6 +39,7 @@ function App() {
           </Routes>
       </Router>
     </MealProvider>
+    </AlertProvider>
   )
 }
 
