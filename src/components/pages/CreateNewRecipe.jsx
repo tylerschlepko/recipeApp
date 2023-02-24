@@ -1,11 +1,11 @@
 
 import React, {useState} from 'react'
-import MealContext from '../../context/MealContext'
 
 
 
 
 function CreateNewRecipe() {
+  
 
   const [image, setImage] = useState(null)
   const [description, setDescription] = useState('')
@@ -41,12 +41,13 @@ const handleSubmit = async (e) => {
   formData.append('instructions', instructions)
   formData.append('description', description)
   formData.append('ingredients', ingredients)
-  console.log(image)
+  console.log(image);
   setImage(null)
   setIngredients('')
   setInstructions('')
   setTitle('')
   setDescription('')
+  alert("Recipe Posted")
   await uploadData(formData)
 }
 
@@ -55,7 +56,9 @@ const uploadData = async (formData) =>{
     const response = await fetch('/upload', {
       method: 'POST',
       body: formData
+      
     })
+
     const data = await response.json()
     console.log(data);
     

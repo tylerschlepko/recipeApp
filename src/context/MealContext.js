@@ -43,23 +43,31 @@ export const MealProvider = ({children}) =>{
         setSingle({})
     },[])
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (id, img) => {
         const updatedRecipes = recipes.filter((recipe)=> recipe.id !== id)
         await setRecipes(updatedRecipes)
         await setShowSingle(false)
         await fetch(`/recipe/${id}` ,{
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify({
+            img: img
+        })
         })
 
     }
 
-    const setHome = () => {
-      setShowSingle(false)
+    const setHome = async () => {
+        await getData()
+        setShowSingle(false)
     }
 
     const handleEdit = () => {
         setEdit(!edit)
     }
+
 
     return(
         <MealContext.Provider value={{
@@ -72,7 +80,8 @@ export const MealProvider = ({children}) =>{
             setSingle,
             single,
             getOne,
-            setHome
+            setHome,
+            
 
         }}>
             {children}

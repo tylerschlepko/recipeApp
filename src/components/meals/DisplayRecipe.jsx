@@ -35,7 +35,7 @@ function DisplayRecipe({recipe}) {
       <div className='flex items-center justify-center'>
         <button  onClick={()=>{setShowSingle(false)}} className="m-5 btn btn-primary w-28">Go Back</button>
         <button onClick={handleEdit} className="btn btn-secondary m-5 w-28">Edit</button>
-        <button onClick={()=>{handleDelete(recipe.id)}} className="btn btn-accent m-5 w-28">Delete</button>
+        <button onClick={()=>{handleDelete(recipe.id, recipe.img_path)}} className="btn btn-accent m-5 w-28">Delete</button>
       </div>
     </div>
   )

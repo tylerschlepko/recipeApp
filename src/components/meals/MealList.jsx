@@ -8,7 +8,7 @@ import EditMeal from './EditMeal'
 
 function MealList() {
   const { recipes, showSingle, single, edit} = useContext(MealContext)
-
+  
   
 
   if(showSingle) {
