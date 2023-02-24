@@ -7,7 +7,7 @@ function DisplayRecipe({recipe}) {
   const {handleDelete, handleEdit, setShowSingle} = useContext(MealContext)
   
   return (
-    <div className="shadow-xl">
+    <div className="">
       <div className="grid grid-cols-2">
         <div className='custom-card-image mb-6 md:mb-0 pl-2 pt-2 pb-2'>
             <div className='rounded-lg shadow-xl card image-full'>

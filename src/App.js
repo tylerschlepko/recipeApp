@@ -23,7 +23,12 @@ function App() {
               <Footer/>
               </>
               }/>
-              <Route path='/newRecipe' element={<CreateNewRecipe/>}/>
+              <Route path='/newRecipe' element={
+              <>
+              <Header/>
+              <CreateNewRecipe/>
+              </>
+              }/>
               <Route path='/login' element={
               <>
               <StrippedHeader/>

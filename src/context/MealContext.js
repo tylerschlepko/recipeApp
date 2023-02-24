@@ -9,6 +9,11 @@ export const MealProvider = ({children}) =>{
     const [showSingle, setShowSingle] = useState(false)
     const [edit, setEdit] = useState(false)
     const [single, setSingle] = useState({})
+
+    useEffect(() => {
+        getData()
+        setSingle({})
+    },[])
     
     const getData = async () => {
         try {
@@ -38,10 +43,7 @@ export const MealProvider = ({children}) =>{
         
       }
 
-    useEffect(() => {
-        getData()
-        setSingle({})
-    },[])
+    
 
     const handleDelete = async (id, img) => {
         const updatedRecipes = recipes.filter((recipe)=> recipe.id !== id)

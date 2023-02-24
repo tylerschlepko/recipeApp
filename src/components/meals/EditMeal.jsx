@@ -63,29 +63,29 @@ function EditMeal({recipe}) {
                 <figure>
                 <img src={`/uploads/${recipe.img_path}`} alt='' />
                 </figure>
-                <div className='card-body justify-end'>
+                <div className='card-body justify-end font-bold'>
                 <h2 className='card-title mb-0'>
-                <input type="text" placeholder="Title" className="input input-bordered input-primary w-full max-w-xs" value={title} onChange={handleTitle} required/>    
+                <input type="text" placeholder="Title" className="input input-bordered input-ghost font-bold w-full max-w-xs" value={title} onChange={handleTitle} required/>    
                 </h2>
                 </div>
             </div>
         </div>
-        <div className="container pl-3 pt-2 pb-2">
+        <div className="container pl-3 pt-2 pb-2 pr-1">
             <p className='font-bold text-xl'>Description:</p>
             <p>
-            <textarea className="textarea textarea-bordered textarea-primary" placeholder="Description" value={description} onChange={handleDescription} required></textarea>
+            <textarea className="textarea textarea-bordered textarea-primary w-full h-56" placeholder="Description" value={description} onChange={handleDescription} required></textarea>
             </p>
         </div>
-        <div className="container pl-2 pb-3">
+        <div className="container pl-2 pb-3 pr-1">
             <p className='font-bold text-xl'>Ingredients:</p>
             <p>
-            <textarea className="textarea textarea-bordered textarea-primary" placeholder="Ingredients" value={ingredients} onChange={handleIngredients} required></textarea>
+            <textarea className="textarea textarea-bordered textarea-primary w-full h-56" placeholder="Ingredients" value={ingredients} onChange={handleIngredients} required></textarea>
             </p>
         </div>
-        <div className="container pl-3 pb-3">
+        <div className="container pl-3 pb-3 pr-1">
             <p className='font-bold text-xl'>Instructions:</p>
             <p>
-            <textarea className="textarea textarea-bordered textarea-primary" placeholder="Instructions" value={instructions} onChange={handleInstructions} required></textarea>
+            <textarea className="textarea textarea-bordered textarea-primary w-full h-56" placeholder="Instructions" value={instructions} onChange={handleInstructions} required></textarea>
             </p>
         </div>
         </div>

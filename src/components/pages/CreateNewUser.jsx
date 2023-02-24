@@ -16,14 +16,14 @@ function CreateNewUser() {
     }
 
     const formComplete = () => {
-        if(name !== '' && username !== '' && email !== '' && password.length > 6 && passwordConfirm !== ''){
+        if(name !== '' && username !== '' && email !== '' && password.length >= 6 && passwordConfirm !== ''){
             return true
         } else {
             return false
         }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         if(password !== passwordConfirm){
             makeAlert('Passwords do not match')
@@ -33,23 +33,36 @@ function CreateNewUser() {
             userObj.username = username
             userObj.email = email
             userObj.password = password
-            window.location.href = '/login'
+            // window.location.href = '/login'
+            const response = await fetch('/newUser', {
+                method:"POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userObj)
+            })
+            const data = await response.json()
+            console.log(data)
         }
     }
 
   return (
-    <>
-    <div className="flex justify-center m-10">
+    
+    <div className="hero">
+    <div className="hero-content flex-col lg:flex-row-reverse">
+    <div className="text-center lg:text-left p-10">
+      <h1 className="text-5xl font-bold">Create an account now!</h1>
+    </div>
     <form onSubmit={handleSubmit} className='flex justify-center flex-col w-96'>
         <Alert/>
         <div className="flex justify-between ">
-            <div className="form-control w-full max-w-xs w-40 place-items-start">
+            <div className="form-control w-full max-w-xs w-40 place-items-start pr-1">
                 <label className="label">
                     <span className="label-text font-bold text-lg">Name</span>
                 </label>
                 <input type="text" className="input input-bordered w-full max-w-xs" value={name} onChange={(e)=>{onChangeSet(e, setName)}} autoComplete='name'/>
             </div>
-            <div className="form-control w-full max-w-xs w-40">
+            <div className="form-control w-full max-w-xs w-40 pl-1">
                 <label className="label">
                     <span className="label-text font-bold text-lg">Username</span>
                 </label>
@@ -75,12 +88,12 @@ function CreateNewUser() {
                 <input type="password" className="input input-bordered w-full" value={passwordConfirm} onChange={(e)=>{onChangeSet(e, setPasswordConfirm)}} />
         </div>
         <input type='submit' value='Create Account' className={`btn ${formComplete() ? 'btn-primary' : 'btn-disabled'} w-96 mt-6`} />
+        <div className="flex justify-center pt-3">
+            <p className=''>Already a member? <Link to='/login' className='link'>Sign In</Link></p>
+        </div>
     </form>
     </div>
-    <div className="flex justify-center">
-    <p className=''>Already a member? <Link to='/login' className='link'>Sign In</Link></p>
     </div>
-    </>
   )
 }
 

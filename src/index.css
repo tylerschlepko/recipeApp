@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 .footer {
-    position: static;
+    position: absolute;
     bottom: 0;
 }
+

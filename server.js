@@ -3,8 +3,11 @@ const postgres = require('postgres')
 const path = require('path')
 const multer = require('multer')
 const app = express()
+const bcrypt = require('bcrypt')
 require('dotenv').config()
 app.use(express.json())
+
+const saltRounds = 10
 
 const fs = require('fs')
 const directory = './public/uploads'
@@ -118,6 +121,28 @@ app.patch('/editRecipe/:id', async (req, res) => {
     console.error(error)
     res.status(500).send('server error')
   }
+})
+
+app.post('/newUser', async (req, res) =>{
+  const {username, name, email, password} = req.body
+  try {
+    await bcrypt.hash(password, saltRounds, async (err, hash)=>{
+      if(err){
+        res.status(404).json({error:'Username or Email already exists'})
+      } else {
+        await sql`
+        INSERT INTO users (username, name, email, password)
+        VALUES (${username},${name},${email},${hash})
+        `
+        console.log('hit')
+        res.send('User Created')
+      }
+    })
+    
+  } catch (error) {
+    res.status(404).json({error:'Username or Email already exists'})
+  }
+
 })
 
 app.listen(PORT, (err)=>{

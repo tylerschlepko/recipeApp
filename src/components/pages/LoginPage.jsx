@@ -25,7 +25,11 @@ function LoginPage() {
     }
 
   return (
-    <>
+    <div className="hero">
+    <div className="hero-content flex-col lg:flex-row-reverse">
+    <div className="text-center lg:text-left p-10">
+      <h1 className="text-5xl font-bold">Sign in now!</h1>
+    </div>
     <div className="flex justify-center m-10">
     <form onSubmit={handleSubmit} className='flex justify-center flex-col w-96'>
         <Alert/>
@@ -43,12 +47,13 @@ function LoginPage() {
                 <input type="text" className="input input-bordered w-full" value={password} onChange={(e)=>{onChangeSet(e, setPassword)}} />
         </div>
         <input type='submit' value='Sign In' className={`btn ${formComplete() ? 'btn-primary' : 'btn-disabled'} w-96 mt-7`}/>
+        <div className="flex justify-center pt-3">
+            <p className=''>Not a member? <Link to='/newUser' className='link'>Sign up now</Link></p>
+        </div>
     </form>
     </div>
-    <div className="flex justify-center">
-        <p className=''>Not a member? <Link to='/newUser' className='link'>Sign up now</Link></p>
     </div>
-    </>
+    </div>
   )
 }
 

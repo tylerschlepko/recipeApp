@@ -69,14 +69,14 @@ const uploadData = async (formData) =>{
 }
 
   return (
-    <div className="flex justify-evenly m-16 mt-12 ">
+    <div className="flex justify-center m-16 mt-3">
         <form action="" className='p-5 grid grid-cols-1 gap-8' onSubmit={handleSubmit} >
             <h1 className='font-bold text-xl text-center'>Upload Your Recipe</h1>
-            <input type="file" className="file-input file-input-bordered file-input-primary w-full max-w-xs" onChange={handleFileChange} required/>
-            <input type="text" placeholder="Title" className="input input-bordered input-primary w-full max-w-xs" value={title} onChange={handleTitle} required/>
-            <textarea className="textarea textarea-bordered textarea-primary" placeholder="Description" value={description} onChange={handleDescription} required></textarea>
-            <textarea className="textarea textarea-bordered textarea-primary" placeholder="Ingredients" value={ingredients} onChange={handleIngredients} required></textarea>
-            <textarea className="textarea textarea-bordered textarea-primary" placeholder="Instructions" value={instructions} onChange={handleInstructions} required></textarea>
+            <input type="file" className="file-input file-input-bordered file-input-primary w-full " onChange={handleFileChange} accept='image/*' required/>
+            <input type="text" placeholder="Title" className="input input-bordered input-primary w-full" value={title} onChange={handleTitle} required/>
+            <textarea className="textarea textarea-bordered textarea-primary h-36" placeholder="Description" value={description} onChange={handleDescription} required></textarea>
+            <textarea className="textarea textarea-bordered textarea-primary h-36" placeholder="Ingredients" value={ingredients} onChange={handleIngredients} required></textarea>
+            <textarea className="textarea textarea-bordered textarea-primary h-36" placeholder="Instructions" value={instructions} onChange={handleInstructions} required></textarea>
             <input type='submit' className='btn btn-primary'  ></input>
         </form>
     </div>
