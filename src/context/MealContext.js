@@ -76,6 +76,14 @@ export const MealProvider = ({children}) =>{
         console.log(userId);
     }
 
+    const checkUser = (recipeId) =>{
+        if(userId.id === recipeId){
+            return true
+        } else {
+            return false
+        }
+    }
+
 
     return(
         <MealContext.Provider value={{
@@ -91,7 +99,8 @@ export const MealProvider = ({children}) =>{
             setHome,
             userId,
             setUserId,
-            setUser
+            setUser,
+            checkUser
         }}>
             {children}
         </MealContext.Provider>

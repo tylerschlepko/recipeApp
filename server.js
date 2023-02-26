@@ -66,7 +66,8 @@ app.get('/recipes', async (req, res)=>{
 
 app.post('/upload', upload.single('image'), async (req, res) =>{
   try {
-    const {title, instructions, description, ingredients} = req.body
+    const {title, instructions, description, ingredients, userId} = req.body
+    console.log(req.body)
     fs.readdir(directory, (err, files) => {
         if (err) throw err;
       
@@ -84,8 +85,8 @@ app.post('/upload', upload.single('image'), async (req, res) =>{
 
     const filePath = `${req.file.filename}.jpg`
     await sql`
-    INSERT INTO recipes (img_path, title, instructions, description, ingredients)
-    VALUES (${filePath}, ${title}, ${instructions}, ${description}, ${ingredients})
+    INSERT INTO recipes (img_path, title, instructions, description, ingredients, user_id)
+    VALUES (${filePath}, ${title}, ${instructions}, ${description}, ${ingredients}, ${userId})
     `
   
   } catch (error) {
@@ -201,7 +202,7 @@ app.post('/getUser', async (req,res)=>{
       const payload = {userId: data.id, name: data.name}
       const token = jwt.sign(payload, secretKey, {expiresIn: '1h'})
       res.cookie('jwt', token, {httpOnly: true })
-      res.json({msg:'logged in', id:data.id})
+      res.json({msg:'logged in', id:data.id, name:data.name})
     } else {
       res.json({msg:'Username or password does not match'})
     }

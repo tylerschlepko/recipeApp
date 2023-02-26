@@ -3,11 +3,14 @@ import React, {useState, useContext} from 'react'
 import MealContext from '../../context/MealContext'
 import LoggedInHeader from '../layout/LoggedInHeader'
 import Header from '../layout/Header'
+import Alert from '../layout/SuccessAlert'
+import AlertContext from '../../context/AlertContext'
 
 
 
 function CreateNewRecipe() {
   const {userId} = useContext(MealContext)
+  const {makeAlert} = useContext(AlertContext)
 
   const [image, setImage] = useState(null)
   const [description, setDescription] = useState('')
@@ -43,13 +46,14 @@ const handleSubmit = async (e) => {
   formData.append('instructions', instructions)
   formData.append('description', description)
   formData.append('ingredients', ingredients)
+  formData.append('userId', userId.id)
   console.log(image);
   setImage(null)
   setIngredients('')
   setInstructions('')
   setTitle('')
   setDescription('')
-  alert("Recipe Posted")
+  makeAlert("Recipe Uploaded")
   await uploadData(formData)
 }
 
@@ -73,9 +77,14 @@ const uploadData = async (formData) =>{
   return (
     <>
     {userId ? <LoggedInHeader/> : <Header/>}
-    <div className="flex justify-center m-16 mt-3">
+
+     <div className="hero">
+    <div className="hero-content flex-col lg:flex-row-reverse">
+    <div className="text-center lg:text-left p-10">
+      <h1 className="text-5xl font-bold">Upload your Recipe!</h1>
+    </div>
+            <Alert className='alert-success'/>
         <form action="" className='p-5 grid grid-cols-1 gap-8' onSubmit={handleSubmit} >
-            <h1 className='font-bold text-xl text-center'>Upload Your Recipe</h1>
             <input type="file" className="file-input file-input-bordered file-input-primary w-full " onChange={handleFileChange} accept='image/*' required/>
             <input type="text" placeholder="Title" className="input input-bordered input-primary w-full" value={title} onChange={handleTitle} required/>
             <textarea className="textarea textarea-bordered textarea-primary h-36" placeholder="Description" value={description} onChange={handleDescription} required></textarea>
@@ -83,6 +92,7 @@ const uploadData = async (formData) =>{
             <textarea className="textarea textarea-bordered textarea-primary h-36" placeholder="Instructions" value={instructions} onChange={handleInstructions} required></textarea>
             <input type='submit' className='btn btn-primary'  ></input>
         </form>
+    </div>
     </div>
     </>
   )

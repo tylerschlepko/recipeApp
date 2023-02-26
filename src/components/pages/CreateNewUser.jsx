@@ -1,9 +1,10 @@
 import React, {useState, useContext, useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Alert from '../layout/Alert'
 import AlertContext from '../../context/AlertContext'
 
 function CreateNewUser() {
+    const navigate = useNavigate()
     const {makeAlert} = useContext(AlertContext)
     const [name, setName] = useState('')
     const [username, setUsername] = useState('')
@@ -42,7 +43,7 @@ function CreateNewUser() {
             })
             const data = await response.json()
             if(data.msg === 'User Created' ){
-                window.location.href = '/login'
+                navigate('/login')
 
             } else {
                 makeAlert(data.msg)

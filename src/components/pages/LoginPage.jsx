@@ -1,10 +1,11 @@
 import React, {useContext, useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Alert from '../layout/Alert'
 import AlertContext from '../../context/AlertContext'
 import MealContext from '../../context/MealContext'
 
 function LoginPage() {
+    const navigate = useNavigate()
     const {makeAlert} = useContext(AlertContext)
     const {setUser, userId} = useContext(MealContext)
     const [username, setUsername] = useState('')
@@ -37,12 +38,14 @@ function LoginPage() {
         const data = await response.json()
         if(data.msg === 'logged in'){
             setUser(data)
+            navigate('/')
         } else {
             console.log(data.msg);
             makeAlert(data.msg)
         }
         
     }
+
 
   return (
     <div className="hero">

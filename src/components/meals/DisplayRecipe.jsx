@@ -4,7 +4,7 @@ import MealContext from '../../context/MealContext'
 
 
 function DisplayRecipe({recipe}) {
-  const {handleDelete, handleEdit, setShowSingle} = useContext(MealContext)
+  const {handleDelete, handleEdit, setShowSingle, checkUser} = useContext(MealContext)
   
   return (
     <div className="">
@@ -33,9 +33,15 @@ function DisplayRecipe({recipe}) {
         </div>
       </div>
       <div className='flex items-center justify-center'>
+        {checkUser(recipe.user_id) ? (
+          <>
         <button  onClick={()=>{setShowSingle(false)}} className="m-5 btn btn-primary w-28">Go Back</button>
         <button onClick={handleEdit} className="btn btn-secondary m-5 w-28">Edit</button>
         <button onClick={()=>{handleDelete(recipe.id, recipe.img_path)}} className="btn btn-accent m-5 w-28">Delete</button>
+        </>
+      ):(
+        <button  onClick={()=>{setShowSingle(false)}} className="m-5 btn btn-primary w-28">Go Back</button> 
+      )}
       </div>
     </div>
   )
