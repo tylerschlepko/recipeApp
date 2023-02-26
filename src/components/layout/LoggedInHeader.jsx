@@ -4,8 +4,9 @@ import {Link} from 'react-router-dom'
 import MealContext from '../../context/MealContext'
 
 function LoggedInHeader() {
-    const {setHome, userId, setUserId, getUserRecipes} = useContext(MealContext)
+    const {setHome, userId, getUserRecipes, logOut, setUserId} = useContext(MealContext)
     let name = userId.name.split(' ')
+
   return (
     <div className="navbar bg-base-100 shadow-lg">
         <div className="flex-1">
@@ -18,7 +19,7 @@ function LoggedInHeader() {
                         <li><Link to="/newRecipe">Upload Your Recipe</Link></li>
                         <li><Link to='/' onClick={getUserRecipes}>See Your Recipes</Link></li>
                         <li><Link to='/' onClick={setHome}>See All Recipes</Link></li>
-                        <li onClick={()=>{setUserId(null)}}><a>Log Out</a></li>
+                        <li onClick={()=>{logOut(); setUserId(null);}}><a>Log Out</a></li>
                 </ul>
             </div>
         </div>

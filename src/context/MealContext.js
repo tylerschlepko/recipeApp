@@ -14,9 +14,39 @@ export const MealProvider = ({children}) =>{
 
     useEffect(() => {
         getData()
+        getjwt()
         setSingle({})
     },[userId])
     
+    const getjwt = async () =>{
+        try {
+            const response = await fetch ('/checkToken', {
+                method: "GET"
+            }) 
+            const data = await response.json()
+            if(data.msg === 'Success'){
+                setUserId({...data, id : data.userId })
+            }
+            
+            } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const logOut = async () =>{
+        try {
+            await fetch('/logOut', {
+                method: "GET"
+            })
+            await fetch('/logOut', {
+                method: "GET"
+            })
+
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
     //Gets the initial data for all of the recipes 
     const getData = async () => {
         try {
@@ -134,7 +164,8 @@ export const MealProvider = ({children}) =>{
             getData,
             checkUserRecipes,
             getUserRecipes,
-            userRecipes
+            userRecipes,
+            logOut
         }}>
             {children}
         </MealContext.Provider>
