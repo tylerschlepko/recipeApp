@@ -1,10 +1,13 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import MealContext from '../../context/MealContext'
 
 
 
 function DisplayRecipe({recipe}) {
-  const {handleDelete, handleEdit, setShowSingle, checkUser} = useContext(MealContext)
+  const {handleDelete, handleEdit, setShowSingle, checkUser, getData} = useContext(MealContext)
+  useEffect(()=>{
+    getData()
+  },[])
   
   return (
     <div className="">

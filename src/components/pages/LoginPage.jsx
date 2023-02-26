@@ -40,7 +40,6 @@ function LoginPage() {
             setUser(data)
             navigate('/')
         } else {
-            console.log(data.msg);
             makeAlert(data.msg)
         }
         
@@ -65,7 +64,6 @@ function LoginPage() {
         <div className="form-control w-full w-96 mt-4">
                 <label className="label">
                     <span className="label-text font-bold text-xl">Password</span>
-                    <span className="label-text"><a className='link'>Forgot Password?</a></span>
                 </label>
                 <input type="password" className="input input-bordered w-full" value={password} onChange={(e)=>{onChangeSet(e, setPassword)}} />
         </div>

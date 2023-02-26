@@ -24,7 +24,7 @@ const upload = multer({ dest: './public/uploads/' });
 const sql = postgres(process.env.DATABASE_URL);
 
 
-
+//checks if the user has a JSON web token
 function authMiddleware(req, res, next) {
   const token = req.cookies.jwt;
   if (!token) {
@@ -40,7 +40,7 @@ function authMiddleware(req, res, next) {
 }
 
 
-
+//sends the user the initial html page
 app.get('/', (req, res) =>{
   try {
     res.sendFile(path.join(__dirname, 'build', 'index.html'))
@@ -51,6 +51,7 @@ app.get('/', (req, res) =>{
   }
 })
 
+//Gets All recipes from the database
 app.get('/recipes', async (req, res)=>{
   try {
     const data = await sql`
@@ -64,6 +65,23 @@ app.get('/recipes', async (req, res)=>{
   }
 })
 
+//Gets All of the current users recipes via their user id
+app.get('/userRecipes/:id', async (req, res)=>{
+  const id = req.params.id
+  try {
+    const data = await sql`
+    SELECT * FROM recipes
+    WHERE user_id = ${id}
+    `
+    res.json(data)
+  
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('server error')
+  }
+})
+
+//Uploads recipe and image and renames the image to be a .jpg
 app.post('/upload', upload.single('image'), async (req, res) =>{
   try {
     const {title, instructions, description, ingredients, userId} = req.body
@@ -95,6 +113,7 @@ app.post('/upload', upload.single('image'), async (req, res) =>{
   }
 })
 
+//Gets single recipe by the id
 app.get('/recipe/:id', async (req, res) =>{
   try {
     const id = req.params.id
@@ -110,6 +129,7 @@ app.get('/recipe/:id', async (req, res) =>{
   }
 })
 
+//Deletes the current recipe according to the id
 app.delete('/recipe/:id', async (req, res) => {
   try {
     const id = req.params.id
@@ -127,12 +147,11 @@ app.delete('/recipe/:id', async (req, res) => {
 })
 
 
-
+//Updates the current recipe via the users input
 app.patch('/editRecipe/:id', async (req, res) => {
   try {
     const id = req.params.id
     const {title, description, instructions, ingredients} = req.body
-    console.log(req.body);
   
     await sql`
     UPDATE recipes 
@@ -146,8 +165,11 @@ app.patch('/editRecipe/:id', async (req, res) => {
   }
 })
 
+//makes a new user
 app.post('/makeUser', async (req, res) =>{
   const {username, name, email, password} = req.body
+  
+  //checks if the input username or email is already taken
   const compare = await sql`
   SELECT email, username FROM users
   `
@@ -156,10 +178,12 @@ app.post('/makeUser', async (req, res) =>{
     if(data.email === email || data.username === username){
       isDup = true
     }
+
   })
   
   
   try {
+    //Encrypts the users password
     await bcrypt.hash(password, saltRounds, async (err, hash)=>{
       if(err){
         res.status(500).json({msg:'Error hashing password'})
@@ -187,6 +211,8 @@ app.post('/makeUser', async (req, res) =>{
 
 })
 
+//Checks if the user exists if they do it sends them a jwt as a cookie with their data 
+//if the username and password combination does not exist then it sends back an error alert
 app.post('/getUser', async (req,res)=>{
   const {username, password} = req.body
   try {
@@ -197,6 +223,7 @@ app.post('/getUser', async (req,res)=>{
     const data = response[0]
     const hash = `${data['password']}`
   
+    //compares the encrypted password with the input password
     const match = await bcrypt.compare(password, hash)
     if(match){
       const payload = {userId: data.id, name: data.name}

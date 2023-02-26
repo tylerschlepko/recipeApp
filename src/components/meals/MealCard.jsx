@@ -8,7 +8,7 @@ function MealCard({single, recipe}) {
   const {getOne} = useContext(MealContext)
 
     useEffect(()=>{
-      single = single
+      
     },[single])
 
   return (

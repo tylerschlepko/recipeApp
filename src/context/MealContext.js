@@ -10,6 +10,7 @@ export const MealProvider = ({children}) =>{
     const [edit, setEdit] = useState(false)
     const [single, setSingle] = useState({})
     const [userId, setUserId] = useState(null)
+    const [userRecipes, setUserRecipes] = useState([])
 
     useEffect(() => {
         getData()
@@ -27,6 +28,14 @@ export const MealProvider = ({children}) =>{
         console.error(error)
         }
     }
+
+    const getUserRecipes = async () => {
+        const filteredItems = recipes.filter((recipe) => recipe.user_id === userId.id);
+        setUserRecipes(filteredItems)
+        setShowSingle(false)
+    }
+
+
 
     const getOne = async (id) => {
       try {
@@ -65,6 +74,7 @@ export const MealProvider = ({children}) =>{
     const setHome = async () => {
         await getData()
         setShowSingle(false)
+        setUserRecipes([])
     }
 
     const handleEdit = () => {
@@ -74,10 +84,23 @@ export const MealProvider = ({children}) =>{
     const setUser = async (data) => {
         await setUserId(await data)
         console.log(userId);
+
     }
 
     const checkUser = (recipeId) =>{
-        if(userId.id === recipeId){
+        if(userId){
+            if(userId.id === recipeId){
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    }
+
+    const checkUserRecipes = () =>{
+        if(userRecipes[0]){
             return true
         } else {
             return false
@@ -100,7 +123,11 @@ export const MealProvider = ({children}) =>{
             userId,
             setUserId,
             setUser,
-            checkUser
+            checkUser,
+            getData,
+            checkUserRecipes,
+            getUserRecipes,
+            userRecipes
         }}>
             {children}
         </MealContext.Provider>
