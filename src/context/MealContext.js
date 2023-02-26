@@ -17,6 +17,7 @@ export const MealProvider = ({children}) =>{
         setSingle({})
     },[userId])
     
+    //Gets the initial data for all of the recipes 
     const getData = async () => {
         try {
         const response = await fetch ('/recipes', {
@@ -29,6 +30,7 @@ export const MealProvider = ({children}) =>{
         }
     }
 
+    //Filters out the users recipes
     const getUserRecipes = async () => {
         const filteredItems = recipes.filter((recipe) => recipe.user_id === userId.id);
         setUserRecipes(filteredItems)
@@ -36,7 +38,7 @@ export const MealProvider = ({children}) =>{
     }
 
 
-
+    //Gets one recipe by id
     const getOne = async (id) => {
       try {
           const response = await fetch (`/recipe/${id}`, {
@@ -54,7 +56,7 @@ export const MealProvider = ({children}) =>{
       }
 
     
-
+    //Deletes the recipe by id
     const handleDelete = async (id, img) => {
         const updatedRecipes = recipes.filter((recipe)=> recipe.id !== id)
         await setRecipes(updatedRecipes)
@@ -71,22 +73,26 @@ export const MealProvider = ({children}) =>{
 
     }
 
+    //Brings the user back to the inital state
     const setHome = async () => {
         await getData()
         setShowSingle(false)
         setUserRecipes([])
     }
 
+    //sets edit to the opposite of what it is
     const handleEdit = () => {
         setEdit(!edit)
     }
 
+    //sets the user
     const setUser = async (data) => {
         await setUserId(await data)
         console.log(userId);
 
     }
 
+    //checks if the user matches the user id tied to the recipe
     const checkUser = (recipeId) =>{
         if(userId){
             if(userId.id === recipeId){
@@ -99,6 +105,7 @@ export const MealProvider = ({children}) =>{
         }
     }
 
+    //checks if there is anything in the userRecipes Array
     const checkUserRecipes = () =>{
         if(userRecipes[0]){
             return true
