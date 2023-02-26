@@ -2,9 +2,11 @@ import React, {useContext, useState} from 'react'
 import { Link } from 'react-router-dom'
 import Alert from '../layout/Alert'
 import AlertContext from '../../context/AlertContext'
+import MealContext from '../../context/MealContext'
 
 function LoginPage() {
     const {makeAlert} = useContext(AlertContext)
+    const {setUser, userId} = useContext(MealContext)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     
@@ -20,8 +22,26 @@ function LoginPage() {
         }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault()
+        const login = {}
+        login.username = username
+        login.password = password
+        const response = await fetch('/getUser', {
+            method:"POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(login)
+        })
+        const data = await response.json()
+        if(data.msg === 'logged in'){
+            setUser(data)
+        } else {
+            console.log(data.msg);
+            makeAlert(data.msg)
+        }
+        
     }
 
   return (
@@ -35,16 +55,16 @@ function LoginPage() {
         <Alert/>
         <div className="form-control w-96">
                 <label className="label">
-                    <span className="label-text font-bold">Username</span>
+                    <span className="label-text font-bold text-xl">Username</span>
                 </label>
                 <input type="text"  className="input input-bordered w-full " value={username} onChange={(e)=>{onChangeSet(e, setUsername)}} />
         </div>
         <div className="form-control w-full w-96 mt-4">
                 <label className="label">
-                    <span className="label-text font-bold">Password</span>
+                    <span className="label-text font-bold text-xl">Password</span>
                     <span className="label-text"><a className='link'>Forgot Password?</a></span>
                 </label>
-                <input type="text" className="input input-bordered w-full" value={password} onChange={(e)=>{onChangeSet(e, setPassword)}} />
+                <input type="password" className="input input-bordered w-full" value={password} onChange={(e)=>{onChangeSet(e, setPassword)}} />
         </div>
         <input type='submit' value='Sign In' className={`btn ${formComplete() ? 'btn-primary' : 'btn-disabled'} w-96 mt-7`}/>
         <div className="flex justify-center pt-3">

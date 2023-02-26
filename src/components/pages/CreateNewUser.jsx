@@ -33,8 +33,7 @@ function CreateNewUser() {
             userObj.username = username
             userObj.email = email
             userObj.password = password
-            // window.location.href = '/login'
-            const response = await fetch('/newUser', {
+            const response = await fetch('/makeUser', {
                 method:"POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -42,9 +41,15 @@ function CreateNewUser() {
                 body: JSON.stringify(userObj)
             })
             const data = await response.json()
-            console.log(data)
+            if(data.msg === 'User Created' ){
+                window.location.href = '/login'
+
+            } else {
+                makeAlert(data.msg)
+            }
         }
     }
+
 
   return (
     

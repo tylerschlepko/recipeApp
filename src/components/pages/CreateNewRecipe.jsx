@@ -1,11 +1,13 @@
 
-import React, {useState} from 'react'
-
+import React, {useState, useContext} from 'react'
+import MealContext from '../../context/MealContext'
+import LoggedInHeader from '../layout/LoggedInHeader'
+import Header from '../layout/Header'
 
 
 
 function CreateNewRecipe() {
-  
+  const {userId} = useContext(MealContext)
 
   const [image, setImage] = useState(null)
   const [description, setDescription] = useState('')
@@ -69,6 +71,8 @@ const uploadData = async (formData) =>{
 }
 
   return (
+    <>
+    {userId ? <LoggedInHeader/> : <Header/>}
     <div className="flex justify-center m-16 mt-3">
         <form action="" className='p-5 grid grid-cols-1 gap-8' onSubmit={handleSubmit} >
             <h1 className='font-bold text-xl text-center'>Upload Your Recipe</h1>
@@ -80,6 +84,7 @@ const uploadData = async (formData) =>{
             <input type='submit' className='btn btn-primary'  ></input>
         </form>
     </div>
+    </>
   )
 }
 

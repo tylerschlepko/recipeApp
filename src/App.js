@@ -17,15 +17,10 @@ function App() {
       <Router>
           <Routes>
               <Route exact path='/' element={
-              <>
-              <Header/>
               <HomePage/>
-              <Footer/>
-              </>
               }/>
               <Route path='/newRecipe' element={
               <>
-              <Header/>
               <CreateNewRecipe/>
               </>
               }/>

@@ -9,11 +9,12 @@ export const MealProvider = ({children}) =>{
     const [showSingle, setShowSingle] = useState(false)
     const [edit, setEdit] = useState(false)
     const [single, setSingle] = useState({})
+    const [userId, setUserId] = useState(null)
 
     useEffect(() => {
         getData()
         setSingle({})
-    },[])
+    },[userId])
     
     const getData = async () => {
         try {
@@ -70,6 +71,11 @@ export const MealProvider = ({children}) =>{
         setEdit(!edit)
     }
 
+    const setUser = async (data) => {
+        await setUserId(await data)
+        console.log(userId);
+    }
+
 
     return(
         <MealContext.Provider value={{
@@ -83,8 +89,9 @@ export const MealProvider = ({children}) =>{
             single,
             getOne,
             setHome,
-            
-
+            userId,
+            setUserId,
+            setUser
         }}>
             {children}
         </MealContext.Provider>
