@@ -3,7 +3,7 @@ import MealContext from '../../context/MealContext'
 
 
 function EditMeal({recipe}) {
-    const {handleEdit, setSingle} = useContext(MealContext)
+    const {handleEdit, setSingleEdit} = useContext(MealContext)
     const [description, setDescription] = useState(recipe.description)
     const [title, setTitle] = useState(recipe.title)
     const [ingredients, setIngredients] = useState(recipe.ingredients)
@@ -33,9 +33,9 @@ function EditMeal({recipe}) {
     body.instructions = instructions
     body.ingredients = ingredients
     body.description = description
+    await setSingleEdit(body)
     console.log(body);
     await editData(body, id)
-    setSingle({})
     }
 
     const editData = async (body, id) =>{

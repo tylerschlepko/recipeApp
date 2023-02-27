@@ -16,7 +16,7 @@ export const MealProvider = ({children}) =>{
         getData()
         getjwt()
         setSingle({})
-    },[userId])
+    },[])
     
     const getjwt = async () =>{
         try {
@@ -38,9 +38,7 @@ export const MealProvider = ({children}) =>{
             await fetch('/logOut', {
                 method: "GET"
             })
-            await fetch('/logOut', {
-                method: "GET"
-            })
+            window.location.href='/'
 
         } catch (error) {
             console.error(error)
@@ -83,6 +81,11 @@ export const MealProvider = ({children}) =>{
           console.error(error)
         }
         
+      }
+
+      const setSingleEdit = async(data) =>{
+        await setSingle((single)=>({...single,...data}))
+        await console.log(single);
       }
 
     
@@ -165,7 +168,8 @@ export const MealProvider = ({children}) =>{
             checkUserRecipes,
             getUserRecipes,
             userRecipes,
-            logOut
+            logOut,
+            setSingleEdit
         }}>
             {children}
         </MealContext.Provider>
