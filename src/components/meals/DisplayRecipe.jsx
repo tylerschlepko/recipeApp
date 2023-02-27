@@ -11,7 +11,9 @@ function DisplayRecipe({recipe}) {
     
   },[])
 
-
+  const textareaStyle = {
+    whiteSpace: 'pre-wrap'
+  };
   
   return (
     <div className="">
@@ -28,15 +30,15 @@ function DisplayRecipe({recipe}) {
         </div>
         <div className="container pl-3 pt-2 pb-2">
           <p className='font-bold text-xl'>Description:</p>
-          <p>{single.description}</p>
+          <p style={textareaStyle}>{single.description}</p>
         </div>
         <div className="container pl-2 pb-3">
           <p className='font-bold text-xl'>Ingredients:</p>
-          <p>{single.ingredients}</p>
+          <p style={textareaStyle}>{single.ingredients}</p>
         </div>
         <div className="container pl-3 pb-3">
           <p className='font-bold text-xl'>Instructions:</p>
-          <p>{single.instructions}</p>
+          <p style={textareaStyle}>{single.instructions}</p>
         </div>
       </div>
       <div className='flex items-center justify-center'>

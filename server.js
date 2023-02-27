@@ -19,9 +19,10 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'build')))
+app.use(express.static(path.join(__dirname, 'public')))
 
-const directory = './build/uploads';
-const upload = multer({ dest: './build/uploads/' });
+const directory = './public/uploads';
+const upload = multer({ dest: './public/uploads/' });
 
 const sql = postgres(process.env.DATABASE_URL);
 

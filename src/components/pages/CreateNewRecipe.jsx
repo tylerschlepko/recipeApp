@@ -74,26 +74,23 @@ const uploadData = async (formData) =>{
   
 }
 
+const textareaStyle = {
+  whiteSpace: 'pre-wrap'
+};
+
   return (
     <>
     {userId ? <LoggedInHeader/> : <Header/>}
-
-     <div className="hero">
-    <div className="hero-content flex-col lg:flex-row-reverse">
-    <div className="text-center lg:text-left p-10">
-      <h1 className="text-5xl font-bold">Upload your Recipe!</h1>
-    </div>
+      <h1 className="text-5xl font-bold text-center pt-10">Upload your Recipe!</h1>
             <Alert className='alert-success'/>
         <form action="" className='p-5 grid grid-cols-1 gap-8' onSubmit={handleSubmit} >
             <input type="file" className="file-input file-input-bordered file-input-primary w-full " onChange={handleFileChange} accept='image/*' required/>
             <input type="text" placeholder="Title" className="input input-bordered input-primary w-full" value={title} onChange={handleTitle} required/>
-            <textarea className="textarea textarea-bordered textarea-primary h-36" placeholder="Description" value={description} onChange={handleDescription} required></textarea>
-            <textarea className="textarea textarea-bordered textarea-primary h-36" placeholder="Ingredients" value={ingredients} onChange={handleIngredients} required></textarea>
-            <textarea className="textarea textarea-bordered textarea-primary h-36" placeholder="Instructions" value={instructions} onChange={handleInstructions} required></textarea>
+            <textarea className="textarea textarea-bordered textarea-primary h-36" placeholder="Description" value={description} onChange={handleDescription} style={textareaStyle} required></textarea>
+            <textarea className="textarea textarea-bordered textarea-primary h-36" placeholder="Ingredients" value={ingredients} onChange={handleIngredients} style={textareaStyle} required></textarea>
+            <textarea className="textarea textarea-bordered textarea-primary h-36" placeholder="Instructions" value={instructions} onChange={handleInstructions} style={textareaStyle} required></textarea>
             <input type='submit' className='btn btn-primary'  ></input>
         </form>
-    </div>
-    </div>
     </>
   )
 }

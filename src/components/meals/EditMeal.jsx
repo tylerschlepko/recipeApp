@@ -54,6 +54,10 @@ function EditMeal({recipe}) {
     }
     
     }
+
+    const textareaStyle = {
+        whiteSpace: 'pre-wrap'
+      };
   return (
     <form>
     <div className="">
@@ -73,19 +77,19 @@ function EditMeal({recipe}) {
         <div className="container pl-3 pt-2 pb-2 pr-1">
             <p className='font-bold text-xl'>Description:</p>
             <p>
-            <textarea className="textarea textarea-bordered textarea-primary w-full h-56" placeholder="Description" value={description} onChange={handleDescription} required></textarea>
+            <textarea style={textareaStyle} className="textarea textarea-bordered textarea-primary w-full h-56" placeholder="Description" value={description} onChange={handleDescription} required></textarea>
             </p>
         </div>
         <div className="container pl-2 pb-3 pr-1">
             <p className='font-bold text-xl'>Ingredients:</p>
             <p>
-            <textarea className="textarea textarea-bordered textarea-primary w-full h-56" placeholder="Ingredients" value={ingredients} onChange={handleIngredients} required></textarea>
+            <textarea style={textareaStyle} className="textarea textarea-bordered textarea-primary w-full h-56" placeholder="Ingredients" value={ingredients} onChange={handleIngredients} required></textarea>
             </p>
         </div>
         <div className="container pl-3 pb-3 pr-1">
             <p className='font-bold text-xl'>Instructions:</p>
             <p>
-            <textarea className="textarea textarea-bordered textarea-primary w-full h-56" placeholder="Instructions" value={instructions} onChange={handleInstructions} required></textarea>
+            <textarea style={textareaStyle} className="textarea textarea-bordered textarea-primary w-full h-56" placeholder="Instructions" value={instructions} onChange={handleInstructions} required></textarea>
             </p>
         </div>
         </div>

@@ -11,12 +11,16 @@ function MealCard({single, recipe}) {
       
     },[single])
 
+    const textareaStyle = {
+      whiteSpace: 'pre-wrap'
+    };
+
   return (
     <div className="card card-compact w-96 bg-base-100 shadow-xl m-5">
         <figure><img src={`/uploads/${recipe.img_path}`} alt="" /></figure>
         <div className="card-body">
             <h2 className="card-title">{recipe.title}</h2>
-            <p>{recipe.description}</p>
+            <p style={textareaStyle}>{recipe.description}</p>
             <div className="card-actions justify-end">
                 <button onClick={async()=>{ await getOne(recipe.id)}}className="btn btn-primary">Show More</button>
             </div>
