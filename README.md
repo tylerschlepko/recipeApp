@@ -10,6 +10,27 @@ The Recipe Application is a Full Stack JavaScript application that enables users
 https://user-images.githubusercontent.com/97323708/221983210-5da04934-fc3e-476e-90f8-58bd29e3c476.mov
 
 
+## Viewing a recipe when not publishing that recipe or not being logged in
+
+
+
+https://user-images.githubusercontent.com/97323708/222008072-b2bd3602-c17a-4c34-a846-cd4360d5dddf.mov
+
+
+## Creating a new recipe
+
+
+
+https://user-images.githubusercontent.com/97323708/222008738-ad9a2ae3-0e6d-4c7f-b585-eb979d00ea07.mov
+
+
+## Viewing recipes created by the user
+
+
+https://user-images.githubusercontent.com/97323708/222008901-391af751-bfb7-443b-b25d-38a5b6e660b9.mov
+
+
+
 
 # Getting Started with Create React App
 
