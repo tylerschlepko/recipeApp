@@ -4,7 +4,7 @@ The Recipe Application is a Full Stack JavaScript application that enables users
 
 ## Tech Stack
 
-[![My Tech Stack](https://github-readme-tech-stack.vercel.app/api/cards?lineCount=3&line1=react,react,1adaf6;javascript,javascript,ffd443;css3,css3,2e7dcc;html5,html5,f57600;&line2=Node.js,node.js,9aec3e;express,express,000000;postgresql,postgresql,2b6ec5;Tailwindcss,Tailwindcss,06B6D4;&line3=git,git,c58907;npm,npm,000000;render,render,e2864c;Daisyui,daisyui,5A0EF8;)](https://github-readme-tech-stack.vercel.app/api/cards?lineCount=3&line1=react,react,1adaf6;javascript,javascript,ffd443;css3,css3,2e7dcc;html5,html5,f57600;&line2=Node.js,node.js,9aec3e;express,express,000000;postgresql,postgresql,2b6ec5;Tailwindcss,Tailwindcss,06B6D4;&line3=git,git,c58907;npm,npm,000000;render,render,e2864c;Daisyui,daisyui,5A0EF8;)
+(https://github-readme-tech-stack.vercel.app/api/cards?lineCount=4&line1=react,react,1adaf6;javascript,javascript,ffd443;css3,css3,2e7dcc;html5,html5,f57600;&line2=Node.js,node.js,9aec3e;express,express,000000;postgresql,postgresql,2b6ec5;&line3=git,git,c58907;npm,npm,000000;render,render,e2864c;Daisyui,daisyui,5A0EF8;&line4=tailwindcss,tailwindcss,06B6D4;)](https://github-readme-tech-stack.vercel.app/api/cards?lineCount=4&line1=react,react,1adaf6;javascript,javascript,ffd443;css3,css3,2e7dcc;html5,html5,f57600;&line2=Node.js,node.js,9aec3e;express,express,000000;postgresql,postgresql,2b6ec5;&line3=git,git,c58907;npm,npm,000000;render,render,e2864c;Daisyui,daisyui,5A0EF8;&line4=tailwindcss,tailwindcss,06B6D4;)
 
 # Getting Started with Create React App
 
