@@ -2,6 +2,10 @@
 
 The Recipe Application is a Full Stack JavaScript application that enables users to upload their favorite recipes and images while ensuring data security through user authentication and JSON Web Token authentication. It employs RESTful API endpoints and server-client data verification for accurate and complete data storage. With a visually appealing interface made possible through Tailwind CSS and Daisy UI, the application delivers a fast and smooth user experience through proper database management and seamless server-client communication. Deployed on a production server through cloud services such as Render, the Recipe Application provides users with a user-friendly platform to share their favorite recipes.
 
+## Tech Stack
+
+[![My Tech Stack](https://github-readme-tech-stack.vercel.app/api/cards?lineCount=3&line1=react,react,1adaf6;javascript,javascript,ffd443;css3,css3,2e7dcc;html5,html5,f57600;&line2=Node.js,node.js,9aec3e;express,express,000000;postgresql,postgresql,2b6ec5;Tailwindcss,Tailwindcss,06B6D4;&line3=git,git,c58907;npm,npm,000000;render,render,e2864c;Daisyui,daisyui,5A0EF8;)](https://github-readme-tech-stack.vercel.app/api/cards?lineCount=3&line1=react,react,1adaf6;javascript,javascript,ffd443;css3,css3,2e7dcc;html5,html5,f57600;&line2=Node.js,node.js,9aec3e;express,express,000000;postgresql,postgresql,2b6ec5;Tailwindcss,Tailwindcss,06B6D4;&line3=git,git,c58907;npm,npm,000000;render,render,e2864c;Daisyui,daisyui,5A0EF8;)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
