@@ -1,3 +1,7 @@
+# Recipe Application
+
+The Recipe Application is a Full Stack JavaScript application that enables users to upload their favorite recipes and images while ensuring data security through user authentication and JSON Web Token authentication. It employs RESTful API endpoints and server-client data verification for accurate and complete data storage. With a visually appealing interface made possible through Tailwind CSS and Daisy UI, the application delivers a fast and smooth user experience through proper database management and seamless server-client communication. Deployed on a production server through cloud services such as Render, the Recipe Application provides users with a user-friendly platform to share their favorite recipes.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
